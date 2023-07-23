@@ -1,10 +1,14 @@
-// На вход подаются 2 строки. Необходимо найти в 1 строке 2 подстроку и вывести
-// true, если совпадение есть, в противном случае false
+// let str = '123';
+// let result = 0;
+// for (let i = 0; i < str.length; i++) {
+//     result += Number(str[i])
+// }
 
-let str_1 = "Необходимо сравнить их";
-let str_2 = "Задача на слово палиндром";
-if (str_1.endsWith(str_2)){
-    console.log(true);
-} else{
-    console.log(false);
+// console.log(result);
+
+let str = '4356';
+let result = 0;
+for (let i = 0; i < str.length; i++) {
+    result = result + Number(str[0]);
 }
+console.log(result);

@@ -1,16 +1,34 @@
-// На входе 5 значений. Все эти значения пользователь вводит с клавиатуры и заполяет массив. Далее необходимо создать массив только из чисел. Если длина массива равна 0, то вывести ‘Массив пуст’. filter
-let a = +prompt("введите 1-е значение");
-let b = +prompt("введите 2-е значение");
-let c = +prompt("введите 3-е значение");
-let d = +prompt("введите 4-е значение");
-let e = +prompt("введите 5-е значение");
+// На входе n – количество элементов массива. 
+// Далее производится заполнение массива с клавиатуры. 
+// Выведите произведение всех элементов массива. 
+// Проверки на ввод только чисел.
+//  Использовать forEach, reduce
 
-const massiv = [a, b, c, d, e];
+const n = prompt('кол-во элементов');
+let arr = [];
 
-const result = massiv.filter(function(el){
-    if(el.length === 0){
-        return("Массив пуст");
-    }else{
-        return("Массив чисел:", el);
+for (let i = 0; i < n; i++) {
+    let element = prompt('что ты хочешь ввести хозяин');
+    if (!isNaN(element)) {
+        arr.push(element)
     }
-})
+}
+
+let str = 1
+arr.forEach(function (el) {
+    if (!isNaN(el)) {
+        str *= el
+    }
+});
+
+console.log(str);
+
+// const num = arr.reduce(function (sum, el) {
+//     if (!isNaN(el)) {
+//        return sum * el
+//     }else{
+//         return "ошибка ввода"
+//     }
+// }, 1);
+
+// console.log(num);
