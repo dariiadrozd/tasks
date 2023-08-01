@@ -1,13 +1,16 @@
-// Пользователь вводит имя фамилию. 
-// Необходимо создать функцию возвращающую строку вида 
-// «Привет, {имя} {фамилия}»
+// Напишите функцию, принимающую в качестве параметра статичный объект. 
+// Функция возвращает количество пар ключ / значение. IIFE
 
-function sayHello(a, b) {
-    return `привет, ${a} ${b}`;
-}
+const obj = {
+    id: 1,
+    num: 14,
+    str: "hello"
+};
 
-const result = sayHello("Дарья", "Дрозд");
-console.log(result);
-
-const result_1 = sayHello("Иван", "Шутко");
-console.log(result_1);
+(function (obj_) {
+    let count = 0;
+    for (let key in obj) {
+        count++;
+    }
+    console.log(count);
+}(obj))

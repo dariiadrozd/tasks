@@ -1,13 +1,18 @@
-// Пользователь вводит имя фамилию. 
-// Необходимо создать функцию возвращающую строку вида 
-// «Привет, {имя} {фамилия}»
+// Напишитефункцию,принимающуювкачествепараметрастатичныйобъект. 
+// Функция возвращает новый объект, где значения – исключительно числа первоначального объекта. IIFE
 
-function sayHello(a, b) {
-    return `привет, ${a} ${b}`;
-}
+const obj = {
+    id: 1,
+    num: 14,
+    str: "hello",
+};
 
-const result = sayHello("Дарья", "Дрозд");
-console.log(result);
-
-const result_1 = sayHello("Иван", "Шутко");
-console.log(result_1);
+(function () {
+    let new_obj = {}
+    for (let key in obj) {
+        if (!isNaN(obj)[key]) {
+            new_obj[key] = obj[key]
+        }
+    }
+    console.log(new_obj);
+}(obj))

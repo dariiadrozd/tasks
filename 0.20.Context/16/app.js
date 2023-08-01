@@ -1,13 +1,11 @@
-// Пользователь вводит имя фамилию. 
-// Необходимо создать функцию возвращающую строку вида 
-// «Привет, {имя} {фамилия}»
+// *Вычислите сумму массива чисел статичного массива используя рекурсию
 
-function sayHello(a, b) {
-    return `привет, ${a} ${b}`;
+const arr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+function sumArr(arr) {
+    if (arr.length === 0) return 0
+    return arr[0] + sumArr(arr.slice(1))
 }
 
-const result = sayHello("Дарья", "Дрозд");
+const result = sumArr(arr);
 console.log(result);
-
-const result_1 = sayHello("Иван", "Шутко");
-console.log(result_1);

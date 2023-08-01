@@ -1,13 +1,12 @@
-// Пользователь вводит имя фамилию. 
-// Необходимо создать функцию возвращающую строку вида 
-// «Привет, {имя} {фамилия}»
+// Напишите функцию, генерирующую пароль из 8 символов. (Math.random)
 
-function sayHello(a, b) {
-    return `привет, ${a} ${b}`;
+function doPassword() {
+    let str = '';
+    for (let i = 0; i < 8; i++) {
+        let num = Math.round(Math.random() * 9);
+        str += num;
+    }
+    return str;
 }
-
-const result = sayHello("Дарья", "Дрозд");
+const result = doPassword();
 console.log(result);
-
-const result_1 = sayHello("Иван", "Шутко");
-console.log(result_1);

@@ -1,13 +1,14 @@
-// Пользователь вводит имя фамилию. 
-// Необходимо создать функцию возвращающую строку вида 
-// «Привет, {имя} {фамилия}»
+// Работа с замыканием. 
+// Напишите функцию, каждый вызов который будет генерировать случайные числа от 1 до 100.
 
-function sayHello(a, b) {
-    return `привет, ${a} ${b}`;
+function doRandom() {
+    return function () {
+        console.log(Math.floor(Math.random() * 100));
+    }
 }
 
-const result = sayHello("Дарья", "Дрозд");
-console.log(result);
-
-const result_1 = sayHello("Иван", "Шутко");
-console.log(result_1);
+let result = doRandom();
+result();
+result();
+result();
+result();
