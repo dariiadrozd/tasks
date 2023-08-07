@@ -19,4 +19,3 @@ function FindNum(n) {
 
 const result = FindNum(n);
 console.log(result);
-debugger 
