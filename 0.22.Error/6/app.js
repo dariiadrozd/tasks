@@ -27,3 +27,12 @@ function doPassword(str) {
 }
 let result = doPassword(str)
 console.log(result);
+
+function isTrianglePossible(a, b, c) {
+    return a + b > c && a + c > b && b + c > a;
+}
+
+// Пример использования
+console.log(isTrianglePossible(3, 4, 5)); // true
+console.log(isTrianglePossible(1, 1, 10)); // false
+console.log(isTrianglePossible(6, 8, 12)); // true. 6
