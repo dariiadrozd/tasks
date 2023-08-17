@@ -1,8 +1,10 @@
-// Необходимо отобразить кнопку с надписью «Нажми на меня». 
-// По клику на нее вывести alert с сообщением
 
-const btn = document.querySelector("button");
+const image = document.querySelector('.img');
 
-btn.addEventListener("click",function(){
-    alert("hi")
+image.addEventListener('mouseover',function(){
+    image.style="background-image:url(./asse"
+})
+
+image.addEventListener('mouseout',function(){
+    image.style="background-image:url(./asse"
 })

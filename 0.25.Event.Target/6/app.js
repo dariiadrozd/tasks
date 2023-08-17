@@ -1,8 +1,22 @@
-// Необходимо отобразить кнопку с надписью «Нажми на меня». 
-// По клику на нее вывести alert с сообщением
 
-const btn = document.querySelector("button");
+const btn = document.querySelector('button');
 
-btn.addEventListener("click",function(){
-    alert("hi")
+function isValid(inp) {
+    if (!inp) throw new Error("пустое")
+}
+
+btn.addEventListener('click', function () {
+    try {
+        const inp = document.querySelector('input');
+        isValid(inp.value)
+        const div = document.querySelector('container');
+        const reverse = inp.value.split('').reverse().join('')
+        if (inp.value === reverse) {
+            div.innerHTML = 'palindrom';
+        } else {
+            div.innerHTML = 'error'
+        }
+    }catch (error) {
+        alert(error.message)
+    }
 })
