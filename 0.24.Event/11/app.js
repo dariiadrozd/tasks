@@ -1,17 +1,11 @@
-const btn = document.querySelector("button");
-const inp = document.getElementById("input");
+// По нажатию на кнопку поменять местами значения 2 инпутов
 
-let flag = false;
+const btn = document.querySelector('button');
+const inpFirst = document.querySelector('#inpFirst');
+const inpSecond = document.querySelector('#inpSecond');
+// Решетка (#) используется для обращения к элементам по идентификатору 
 
-btn.addEventListener("click", function(){
-    if(flaf === false){
-        inp.style = "background-color:pink";
-    }else{
-        
-    }
+
+btn.addEventListener('click',function(){
+    [inpFirst.value, inpSecond.value] = [inpSecond.value, inpFirst.value]
 })
-
-console.log(tag.textContent);
-tag.textContent = "'<p>hello</p>'";
-
-tag.innerHTML = '<p>hello</p>'
