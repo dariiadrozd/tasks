@@ -1,35 +1,17 @@
-const input = document.getElementById("numberInput");
-const button = document.getElementById("doubleButton");
-const resultDiv = document.getElementById("result");
+// Необходимо отобразить кнопку и инпут со значением по умолчанию. 
+// По клику на кнопку заменить значение инпута
 
-button.addEventListener("click", function() {
-    const inputValue = input.value;
+const btn = document.querySelector("button");
 
-    if (!inputValue.trim()) {
-        alert("Введите число!");
-        return;
+let flag = false;
+
+btn.addEventListener("click", function () {
+    const inp = document.querySelector("input")
+    if (flag === false) {
+        inp.value = "значение не по умолчанию"
+        flag = true
+    } else {
+        inp.value("значение не по умолчанию");
+        flag = false
     }
-
-    const parsedNumber = parseFloat(inputValue);
-
-    if (isNaN(parsedNumber)) {
-        alert("Введите корректное число!");
-        return;
-    }
-
-    const doubledValue = parsedNumber * 2;
-    resultDiv.textContent = `Результат: ${doubledValue}`;
-});
-
-
-
-const button = document.getElementById("myButton");
-
-button.addEventListener("click", function() {
-    button.style.backgroundColor = "green";
-});
-
-
-
-
-
+})

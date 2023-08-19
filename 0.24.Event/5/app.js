@@ -1,17 +1,21 @@
-// Необходимо отобразить кнопку и инпут со значением по умолчанию. 
-// По клику на кнопку заменить значение инпута
+// Необходимо отобразить числовой инпут и кнопку. 
+// После нажатия на кнопку необходимо получить значение из инпута. 
+// Проверить, что это число > 0. Если проверка true, то вывести в Результат ряд Фибоначчи. 
 
-const btn = document.querySelector("button");
 
-let flag = false;
-
+const btn = document.querySelector('button');
 btn.addEventListener("click", function () {
-    const inp = document.querySelector("input")
-    if (flag === false) {
-        inp.value = "значение не по умолчанию"
-        flag = true
-    } else {
-        inp.value("значение не по умолчанию");
-        flag = false
+    try {
+        const inp = document.querySelector("input");
+        if(!inp.value) throw new Error("пустая строка ввода")
+        const cont = document.querySelector(".container");
+        const arr = [0, 1];
+        for (let i = 2; i < +inp.value; i++) {
+            arr.push(arr[i - 1] + arr[i - 2])
+        }
+        cont.innerHTML = arr
+    } catch (error) {
+        alert(error.message);
     }
+
 })
