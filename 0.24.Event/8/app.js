@@ -1,17 +1,7 @@
-const btn = document.querySelector("button");
-const inp = document.getElementById("input");
+// У вас есть кнопка. После нажатия поменять background.
 
-let flag = false;
+const btn = document.querySelector('button');
 
-btn.addEventListener("click", function(){
-    if(flaf === false){
-        inp.style = "background-color:pink";
-    }else{
-        
-    }
-})
-
-console.log(tag.textContent);
-tag.textContent = "'<p>hello</p>'";
-
-tag.innerHTML = '<p>hello</p>'
+btn.addEventListener('click', function(){
+    btn.style.backgroundColor = 'red'; //изменяем цвет
+});
