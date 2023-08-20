@@ -1,22 +1,20 @@
+// Вы вводите строку. Проверить является ли это слово палиндром. 
+// Добавить проверки
 
 const btn = document.querySelector('button');
-
-function isValid(inp) {
-    if (!inp) throw new Error("пустое")
-}
+const inp = document.querySelector('input');
+const res = document.querySelector('h1')
 
 btn.addEventListener('click', function () {
-    try {
-        const inp = document.querySelector('input');
-        isValid(inp.value)
-        const div = document.querySelector('container');
-        const reverse = inp.value.split('').reverse().join('')
-        if (inp.value === reverse) {
-            div.innerHTML = 'palindrom';
-        } else {
-            div.innerHTML = 'error'
-        }
-    }catch (error) {
-        alert(error.message)
+    const inpPol = inp.value.toLowerCase();
+    const reversInp = inpPol.split("").reverse().join("");
+
+
+    if (inpPol === reversInp && inpPol !== '') {
+        res.textContent = 'это палиндром';
+    } else if (inpPol === '') {
+        res.textContent = 'введите слово';
+    } else {
+        res.textContent = 'это не палиндром';
     }
-})
+});
