@@ -1,17 +1,27 @@
-const btn = document.querySelector("button");
-const inp = document.getElementById("input");
+// Вывести в строчку все вводимые значения через инпут в виде массива. 
+// Добавить проверку, что поле не пустое
 
-let flag = false;
+const btn = document.querySelector('button');
+let arr = [];
 
-btn.addEventListener("click", function(){
-    if(flaf === false){
-        inp.style = "background-color:pink";
-    }else{
-        
+function isValid() {
+    if (!inp) throw new Error('поле ввода пустое')
+}
+
+btn.addEventListener('click', function () {
+    try {
+        const inp = document.querySelector('input');
+        isValid(inp.value) 
+        const paragraph = document.querySelector('p');
+
+        arr.push(inp.value); //???? значение input(value) пушится в массив, 
+        // если без этой строки будет пушится  <input type="text">
+        paragraph.innerHTML = arr;
+        inp.value = "";  //?? чтобы когда ты нажимал клик тебе не нужно было удалять значение, 
+        // а потом писать заново(значения сами пропадают)
+    } catch (error) {
+        alert(error.message)
     }
-})
+});
 
-console.log(tag.textContent);
-tag.textContent = "'<p>hello</p>'";
-
-tag.innerHTML = '<p>hello</p>'
+ 
