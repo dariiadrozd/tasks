@@ -1,7 +1,7 @@
 // На входе статичный объект и строка str. 
 // Написать функцию на поиск в объекте значения str. Values
 
-const obj ={
+const obj = {
     id: 'email',
     name: 'darya@email.com',
     age: 18,
@@ -9,9 +9,18 @@ const obj ={
 
 const str = 'email';
 
-function SearchStr(obj, str){
-    const string = Object.values(str);
-    return string
+function SearchStr(obj, str) {
+    try{
+        const string = Object.values(obj);
+        if(!string.includes(str)){
+            throw new Error (false)
+        }
+        return true;
+    } catch(error){
+        return error.message
+    }
+ 
+
 }
 
 const result = SearchStr(obj, str)
