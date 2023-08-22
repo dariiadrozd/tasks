@@ -12,9 +12,7 @@ const str = 'email';
 function SearchStr(obj, str) {
     try{
         const string = Object.values(obj);
-        if(!string.includes(str)){
-            throw new Error (false)
-        }
+        if(!string.includes(str)) throw new Error (false);
         return true;
     } catch(error){
         return error.message

@@ -1,10 +1,25 @@
-// На странице расположен маркированный список. 
-// Пользователь кликает на каждый item списка. 
-// Необъодимо отловить на какой из элементов нажал пользователь и отобразить
+// На входе объект. Ключи и значения - 
+// автоинкремент (генерируется автоматически от 1 до n). 
+// Написать функцию на поиск в объекте только четных ключей.
 
-const ul = document.querySelector('ul');
+const n = 5;
+const obj = {}
 
-ul.addEventListener("click", function (event) {
-    const div = document.querySelector('div');
-    div.innerHTML = event.target.textContent;
-})
+function doObject(n) {
+    for (let i = 0; i < n; i++) {
+        obj[i] = i;
+    }
+    return obj;
+}
+
+function findValue(obj) {
+    const value = Object.keys(obj);
+    let res = value.filter(function (el) {
+        if (el % 2 == 0) return true;
+    });
+    return res;
+}
+
+let result = doObject(n);
+let check = findValue(result)
+console.log(check);
