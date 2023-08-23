@@ -1,10 +1,2 @@
-// На странице расположен маркированный список. 
-// Пользователь кликает на каждый item списка. 
-// Необъодимо отловить на какой из элементов нажал пользователь и отобразить
-
-const ul = document.querySelector('ul');
-
-ul.addEventListener("click", function (event) {
-    const div = document.querySelector('div');
-    div.innerHTML = event.target.textContent;
-})
+// На вход подается число. Необходимо каждое значение возвести в степень индекса и вычислить сумму.
+// 12345 = 10+21+32+43+54
