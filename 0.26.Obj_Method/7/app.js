@@ -14,3 +14,11 @@ function calculatePowerSum(number) {
 
     return sum;
 }
+const inputNumber = 12345;
+
+try {
+    const result = calculatePowerSum(inputNumber);
+    console.log(`Sum of powers for ${inputNumber} is ${result}`);
+} catch (error) {
+    console.error(error.message);
+}
