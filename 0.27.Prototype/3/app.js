@@ -1,24 +1,28 @@
-// На вход подается число. Необходимо каждое значение возвести в степень индекса и вычислить сумму.
-// 12345 = 10+21+32+43+54
+// По условию задачи даны инпут и кнопка.
+//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
+//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
+//   а значение – текущее итерируемое значение массива
+// [11, 2, 13] – {
+// 0: 11,
+// 1: 2,
+// 2: 13 }
 
-function calculatePowerSum(number) {
-    if (typeof number !== 'number' || number <= 0) {
-        throw new Error('Input should be a positive number');
+const btn = document.querySelector('button');
+const arr = [];
+const obj = {};
+
+btn.addEventListener('click', function () {
+    const inp = document.querySelector('input');
+    const FirstArr = document.querySelector('.array');
+    const obj = document.querySelector('.result');
+
+    FirstArr.innerHTML = arr;
+    arr.push(inp.value);
+    inp.value = '';
+
+    for (let i = 0; i < arr.length; i++) {
+        obj[i] = arr[i];
     }
-    const digits = number.toString().split('').map(Number); // Разбиваем число на цифры
-    let sum = 0;
 
-    for (let i = 0; i < digits.length; i++) {
-        sum += digits[i] ** (i + 1); // Возводим цифру в степень индекса и добавляем к сумме
-    }
-
-    return sum;
-}
-const inputNumber = 12345;
-
-try {
-    const result = calculatePowerSum(inputNumber);
-    console.log(`Sum of powers for ${inputNumber} is ${result}`);
-} catch (error) {
-    console.error(error.message);
-}
+    obj.innerHTML = JSON.stringify(obj);
+})
