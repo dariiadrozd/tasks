@@ -1,28 +1,19 @@
-// По условию задачи даны инпут и кнопка.
-//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
-//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
-//   а значение – текущее итерируемое значение массива
-// [11, 2, 13] – {
-// 0: 11,
-// 1: 2,
-// 2: 13 }
+// На вход программе подается число в двоичной системе счисления.
+//  Необходимо преобразовать его в десятичную систему счисления
 
+// Преобразовать число из двоичной системы счисления в десятичную можно следующим образом: 
+// каждый разряд числа необходимо умножить на 2n, где n - номер разряда, начиная с 0.
+// Затем суммировать полученные значения.
+
+const binaryInp = document.querySelector('.binaryInp');
 const btn = document.querySelector('button');
-const arr = [];
-const obj = {};
+const res = document.querySelector('.result');
 
 btn.addEventListener('click', function () {
-    const inp = document.querySelector('input');
-    const FirstArr = document.querySelector('.array');
-    const obj = document.querySelector('.result');
-
-    FirstArr.innerHTML = arr;
-    arr.push(inp.value);
-    inp.value = '';
-
-    for (let i = 0; i < arr.length; i++) {
-        obj[i] = arr[i];
-    }
-
-    obj.innerHTML = JSON.stringify(obj);
-})
+    const binary = binaryInp.value;
+    const digit = parseInt(binary, 2);
+    // используем parseInt(binary, 2) 
+    // для преобразования бинарного числа в десятичное число. 
+    // Второй аргумент 2 указывает, что введенное число в двоичной системе.
+    res.textContent = `десятичная система счисления: ${digit};`
+});
