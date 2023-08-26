@@ -1,24 +1,25 @@
-// На вход подается число. Необходимо каждое значение возвести в степень индекса и вычислить сумму.
-// 12345 = 10+21+32+43+54
+// По условию задачи даны инпут и кнопка. 
+// Необходимо преобразовать строку в CamelCase (примерСтрокиВCamelCase )
 
-function calculatePowerSum(number) {
-    if (typeof number !== 'number' || number <= 0) {
-        throw new Error('Input should be a positive number');
+const btn = document.querySelector('button');
+
+
+btn.addEventListener('click', function () {
+    const inp = document.querySelector('input');
+    const res = document.querySelector('div')
+
+    const words = inp.value.split(' ');
+    const arrCamel = [];
+
+    for (let i = 0; i < words.length; i++) {
+        if (i === 0) {
+            arrCamel.push(words[i].toLowerCase());
+        } else {
+            const result = words[i][0].toUpperCase() + words[i].slice(1).toLowerCase();
+            arrCamel.push(result);
+        }
     }
-    const digits = number.toString().split('').map(Number); // Разбиваем число на цифры
-    let sum = 0;
 
-    for (let i = 0; i < digits.length; i++) {
-        sum += digits[i] ** (i + 1); // Возводим цифру в степень индекса и добавляем к сумме
-    }
-
-    return sum;
-}
-const inputNumber = 12345;
-
-try {
-    const result = calculatePowerSum(inputNumber);
-    console.log(`Sum of powers for ${inputNumber} is ${result}`);
-} catch (error) {
-    console.error(error.message);
-}
+    const camelString = arrCamel.join('');
+    res.innerHTML = camelString;
+})
