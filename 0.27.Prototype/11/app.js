@@ -1,28 +1,31 @@
-// По условию задачи даны инпут и кнопка.
-//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
-//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
-//   а значение – текущее итерируемое значение массива
-// [11, 2, 13] – {
-// 0: 11,
-// 1: 2,
-// 2: 13 }
+// Напишите функцию,принимающую в качестве параметра статичный объект. 
+// Функция возвращает новый объект, где значения – исключительно числа первоначального объекта. IIFE
+
+
+const obj = {
+    1: 18,
+    2: 'Darya',
+    3: 37,
+    4: 'Drozd',
+    5: 76
+}
 
 const btn = document.querySelector('button');
-const arr = [];
-const obj = {};
+const res = document.querySelector('.result');
 
 btn.addEventListener('click', function () {
-    const inp = document.querySelector('input');
-    const FirstArr = document.querySelector('.array');
-    const obj = document.querySelector('.result');
-
-    FirstArr.innerHTML = arr;
-    arr.push(inp.value);
-    inp.value = '';
-
-    for (let i = 0; i < arr.length; i++) {
-        obj[i] = arr[i];
+ function NumberFilter(object) {
+        this.filterObj = {};
+        for (key in object) {
+            if (typeof object[key] === 'number') {
+                this.filterObj[key] = object[key];
+            }
+        }
     }
+    const NumberRes = new NumberFilter(obj);
+    const filterObject = NumberRes.filterObj;
 
-    obj.innerHTML = JSON.stringify(obj);
+    res.textContent = JSON.stringify(filterObject);
 })
+
+
