@@ -1,28 +1,31 @@
-// По условию задачи даны инпут и кнопка.
-//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
-//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
-//   а значение – текущее итерируемое значение массива
-// [11, 2, 13] – {
-// 0: 11,
-// 1: 2,
-// 2: 13 }
+// Напишите алгоритм для нахождения факториала числа
+
+// function factorial(n, result){
+//     result = result || 1;
+//     if(!n){
+//         return result;
+//     }else{
+//         return factorial(n-1, result*n);
+//     }
+// }
 
 const btn = document.querySelector('button');
-const arr = [];
-const obj = {};
+const inp = document.querySelector('.factorial');
+const result = document.querySelector('.result');
 
-btn.addEventListener('click', function () {
-    const inp = document.querySelector('input');
-    const FirstArr = document.querySelector('.array');
-    const obj = document.querySelector('.result');
-
-    FirstArr.innerHTML = arr;
-    arr.push(inp.value);
-    inp.value = '';
-
-    for (let i = 0; i < arr.length; i++) {
-        obj[i] = arr[i];
+function factorial(n, result) {
+    result = result || 1;
+    if (!n) {
+        return result;
+    } else {
+        return factorial(n - 1, result * n);
     }
+};
 
-    obj.innerHTML = JSON.stringify(obj);
+btn.addEventListener('click',function(){
+const inpValue = +inp.value;
+const resFactorial = factorial(inpValue);
+result.textContent = `Факториал числа ${inpValue} равен ${resFactorial}`
 })
+
+
