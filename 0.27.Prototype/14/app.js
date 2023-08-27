@@ -1,28 +1,26 @@
-// По условию задачи даны инпут и кнопка.
-//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
-//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
-//   а значение – текущее итерируемое значение массива
-// [11, 2, 13] – {
-// 0: 11,
-// 1: 2,
-// 2: 13 }
+// По условию задачи даны инпут и кнопка. Напишите функцию, которая
+// преобразует любое предложение инпута в предложение VAPORWAVE. 
+// предложение VAPORWAVE преобразует все буквы в верхний регистр и 
+// добавляет 2 пробела между каждой буквой (или специальным символом) 
+// Why isn't my code working?–W H Y I S N ' T M Y C O D E W O R K I N G ?
+
 
 const btn = document.querySelector('button');
-const arr = [];
-const obj = {};
+const inp = document.querySelector('.vaporwave');
+const res = document.querySelector('.result');
 
-btn.addEventListener('click', function () {
-    const inp = document.querySelector('input');
-    const FirstArr = document.querySelector('.array');
-    const obj = document.querySelector('.result');
+btn.addEventListener('click', function(){
+    const sentence = inp.value;
+    const vaporwaveSentence = convertToVaporwave(sentence);
+    res.textContent = vaporwaveSentence;
+});
 
-    FirstArr.innerHTML = arr;
-    arr.push(inp.value);
-    inp.value = '';
-
-    for (let i = 0; i < arr.length; i++) {
-        obj[i] = arr[i];
-    }
-
-    obj.innerHTML = JSON.stringify(obj);
-})
+function convertToVaporwave(sentence) {
+    return sentence.split('').map(function(el) {
+        if(el !== " "){
+            return el.toUpperCase() + "  ";
+        }else{
+            return '  ';
+        }
+    }).join('')
+}
