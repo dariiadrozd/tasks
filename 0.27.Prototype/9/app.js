@@ -1,28 +1,14 @@
-// По условию задачи даны инпут и кнопка.
-//  Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив. 
-//  Необходимо создать объект, где каждый ключ – индекс элемента массива,
-//   а значение – текущее итерируемое значение массива
-// [11, 2, 13] – {
-// 0: 11,
-// 1: 2,
-// 2: 13 }
+// На входе объект. Ключи и значения - автоинкремент 
+// (генерируется автоматически от 1 до n). 
+// Необходимо вывести количество пар ключ значение объекта)
 
-const btn = document.querySelector('button');
-const arr = [];
-const obj = {};
+const obj = {
+    1: 'объект 1',
+    2: 'объект 2',
+    3: 'объект 3',
+    4: 'объект 4'
+};
 
-btn.addEventListener('click', function () {
-    const inp = document.querySelector('input');
-    const FirstArr = document.querySelector('.array');
-    const obj = document.querySelector('.result');
-
-    FirstArr.innerHTML = arr;
-    arr.push(inp.value);
-    inp.value = '';
-
-    for (let i = 0; i < arr.length; i++) {
-        obj[i] = arr[i];
-    }
-
-    obj.innerHTML = JSON.stringify(obj);
-})
+const count = Object.keys(obj).length;
+const res = document.querySelector('.result');
+res.textContent = `Количество пар ключ-значение в объекте: ${count}`;
