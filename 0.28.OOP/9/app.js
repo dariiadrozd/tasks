@@ -1,34 +1,26 @@
-// Реализуйте класс Anagram (Анаграмма это слово или фраза , 
-//   полученный путем замены букв исходного слова или фразы). 
-// Создать функцию для вывода ряда true, если слова являются анаграммами. 
-// Добавить проверки на ввод
+// Дополнить класс Validator. Добавить метод isURL для проверки на url.
 
-class Anagram {
-  isValid(str1, str2) {
-    if (typeof str1 !== 'string' || typeof str2 !== 'string') {
-      throw new Error('Вы передали не строку');
+class Validator {
+  isValid(str) {
+    if (typeof str !== 'string') {
+      throw new Error('Вы передали не строку')
     }
   }
 
-  reverseAnagram(str1, str2) {
-    try {
-      this.isValid(str1, str2);
-
-      const reversedStr1 = str1.toLowerCase().split('').sort().join('');
-      const reversedStr2 = str2.toLowerCase().split('').sort().join('');
-
-      return reversedStr1 === reversedStr2;
-    } catch (error) {
-      return false;
-    }
+isURL(str){
+  try{
+    const url = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    return url.test(str);
+  }catch(error){
+    return false;
   }
 }
+}
 
-const value1 = "обезьянство";
-const value2 = "светобоязнь";
+const validator = new Validator();
+const resultUrl = validator.isURL('https://www.myrusakov.ru/js-validate-url-part-1.html')
+console.log(resultUrl);
 
-const anagram = new Anagram();
-const isReverseAnagram = anagram.reverseAnagram(value1, value2);
-console.log(isReverseAnagram);
+
 
 
