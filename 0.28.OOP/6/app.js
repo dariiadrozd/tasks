@@ -1,44 +1,39 @@
-// // По условию задачи даны инпут и кнопка. 
-// Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив строк.
-//  Необходимо вывести: полный массив из всех элементов, а также массив из уникальных значений
+// Реализуйте класс ServerGetAll. Обязательными функциями считаются функции controller, service, repository. 
+// Цепочка взаимодействия между методами следующая:
+// controller -> service -> repository, где:
+// controller – функция, принимающая данные. Принимает json
+// service – функция проверки на то что с repository вернулось значение
+// repository – функция, симулирующая БД. Хранит массив данных. 
+// Взаимодействие с этим массивом осуществляется только в repository. Массив находится в приложении
+// Задание:
+// Необходимо вывести в консоль весь массив
 
-// const btn = document.querySelector('button');
-// const arr = [];
-// const newArr = [];
+class ServerGetAll {
 
-// btn.addEventListener('click', function () {
-//     const inp = document.querySelector('input');
-//     const firstDiv = document.querySelector('.array');
-//     const res = document.querySelector('.result');
-//     arr.push(inp.value);
-
-//     firstDiv.innerHTML = arr;
-
-//     for (let i = 0; i < arr.length; i++) {
-//         if (!newArr.includes(arr[i])) {
-//             newArr.push(arr[i]);
-//         }
-//     }
-//     res.innerHTML = newArr;
-//     inp.value = '';
-// });
-
-const btn = document.querySelector("button");
-const arr = [];
-const newArr = [];
-
-btn.addEventListener("click", function () {
-  const inp = document.querySelector("input");
-  const firstDiv = document.querySelector(".array");
-  const res = document.querySelector(".result");
-  arr.push(inp.value);
-
-  firstDiv.innerHTML = arr;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
+  controller() {
+    try {
+      const ser = this.service();
+      return ser;
+    } catch (error) {
+      return error.message;
+    }
   }
 
-  res.innerHTML = newArr;
-  inp.value = "";
-});
+  service() {
+    const rep = this.repository();
+    return rep;
+  }
+
+  repository() {
+    const arr = [
+      { "id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1 }, { "id": "typescript", "label": "TypeScript", "category": "programmingLanguages", "priority": 1 }, { "id": "sql", "label": "SQL", "category": "programmingLanguages", "priority": 2 },
+      { "id": "java", "label": "Java", "category": "programmingLanguages", "priority": 3 },
+      { "id": "go", "label": "GO", "category": "programmingLanguages", "priority": 3 }
+    ]
+    return arr;
+  }
+}
+
+const serverGetAll = new ServerGetAll();
+const result = serverGetAll.controller();
+console.log(result);
