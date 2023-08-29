@@ -1,34 +1,49 @@
-// Реализуйте класс Anagram (Анаграмма это слово или фраза , 
-//   полученный путем замены букв исходного слова или фразы). 
-// Создать функцию для вывода ряда true, если слова являются анаграммами. 
-// Добавить проверки на ввод
+// Реализуйте класс ServerById. Обязательными функциями считаются функции middleware, controller, service, repository. Цепочка взаимодействия между методами следующая:
+// middleware -> controller -> service -> repository, где:
+// middleware – функция валидатор
+// controller – функция, принимающая данные. Принимает json
+// service – функция проверки на то что с repository вернулось значение
+// repository – функция, симулирующая БД. Хранит массив данных. Взаимодействие с этим массивом осуществляется только в repository. Массив находится в приложении
+// Задание:
+// на вход подается JSON вида:
+// `{
+// "id": "javascript"
+// }`
+// Необходимо вывести в консоль найденный элемент массива по id если таковой имеется. В противном случае бросить исключение. Добавить проверки
 
-class Anagram {
-  isValid(str1, str2) {
-    if (typeof str1 !== 'string' || typeof str2 !== 'string') {
-      throw new Error('Вы передали не строку');
+class ServerById {
+
+  controller() {
+    try {
+      const serv = this.service(obj);
+      return serv;
+    } catch (error) {
+      return error.message;
     }
   }
 
-  reverseAnagram(str1, str2) {
-    try {
-      this.isValid(str1, str2);
+  repository(obj) {
+    const arr = [
+      { "id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1 }, { "id": "typescript", "label": "TypeScript", "category": "programmingLanguages", "priority": 1 }, { "id": "sql", "label": "SQL", "category": "programmingLanguages", "priority": 2 },
+      { "id": "java", "label": "Java", "category": "programmingLanguages", "priority": 3 },
+      { "id": "go", "label": "GO", "category": "programmingLanguages", "priority": 3 }
+    ]
+    const result = arr.filter((el) => el.id == obj, id ? true : null)
 
-      const reversedStr1 = str1.toLowerCase().split('').sort().join('');
-      const reversedStr2 = str2.toLowerCase().split('').sort().join('');
-
-      return reversedStr1 === reversedStr2;
-    } catch (error) {
-      return false;
-    }
   }
 }
 
-const value1 = "обезьянство";
-const value2 = "светобоязнь";
+service(obj){
+  const rep = this.repository(obj);
+  return rep;
+}
 
-const anagram = new Anagram();
-const isReverseAnagram = anagram.reverseAnagram(value1, value2);
-console.log(isReverseAnagram);
+
+const serverById = new ServerById();
+const obj = {
+  id: 'javascript'
+}
+
+console.log(serverById.controller(obj));
 
 
