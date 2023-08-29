@@ -1,44 +1,15 @@
-// // По условию задачи даны инпут и кнопка. 
-// Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив строк.
-//  Необходимо вывести: полный массив из всех элементов, а также массив из уникальных значений
+// Реализуйте класс Singer, который будет иметь следующие свойства: name, surname. Также класс должен иметь метод getAutograph, который будет выводить “{name} {surname), с наилучшими пожеланиями”.
 
-// const btn = document.querySelector('button');
-// const arr = [];
-// const newArr = [];
-
-// btn.addEventListener('click', function () {
-//     const inp = document.querySelector('input');
-//     const firstDiv = document.querySelector('.array');
-//     const res = document.querySelector('.result');
-//     arr.push(inp.value);
-
-//     firstDiv.innerHTML = arr;
-
-//     for (let i = 0; i < arr.length; i++) {
-//         if (!newArr.includes(arr[i])) {
-//             newArr.push(arr[i]);
-//         }
-//     }
-//     res.innerHTML = newArr;
-//     inp.value = '';
-// });
-
-const btn = document.querySelector("button");
-const arr = [];
-const newArr = [];
-
-btn.addEventListener("click", function () {
-  const inp = document.querySelector("input");
-  const firstDiv = document.querySelector(".array");
-  const res = document.querySelector(".result");
-  arr.push(inp.value);
-
-  firstDiv.innerHTML = arr;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
+class  Singer {
+  constructor(name, surname){
+this.name = name;
+this.surname = surname;
   }
+  getAutograph(){
+    return `${this.name} ${this.surname}  с наилучшими пожеланиями!`
+  }
+}
 
-  res.innerHTML = newArr;
-  inp.value = "";
-});
+const singer = new Singer('Darya', 'Drozd');
+const result = singer.getAutograph();
+console.log(result);
