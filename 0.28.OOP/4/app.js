@@ -1,44 +1,19 @@
-// // По условию задачи даны инпут и кнопка. 
-// Пользователь вводит в инпут значения и по нажатию на кнопку формирует массив строк.
-//  Необходимо вывести: полный массив из всех элементов, а также массив из уникальных значений
+// РеализуйтеклассMathСalculation.Внегопередаетсячислоn–количество элементов массива. На основании числа формируется динамический массив из n элементов внутри класса. Создать функцию для подсчета всех четных чисел массива. Добавить проверки на ввод
 
-// const btn = document.querySelector('button');
-// const arr = [];
-// const newArr = [];
-
-// btn.addEventListener('click', function () {
-//     const inp = document.querySelector('input');
-//     const firstDiv = document.querySelector('.array');
-//     const res = document.querySelector('.result');
-//     arr.push(inp.value);
-
-//     firstDiv.innerHTML = arr;
-
-//     for (let i = 0; i < arr.length; i++) {
-//         if (!newArr.includes(arr[i])) {
-//             newArr.push(arr[i]);
-//         }
-//     }
-//     res.innerHTML = newArr;
-//     inp.value = '';
-// });
-
-const btn = document.querySelector("button");
-const arr = [];
-const newArr = [];
-
-btn.addEventListener("click", function () {
-  const inp = document.querySelector("input");
-  const firstDiv = document.querySelector(".array");
-  const res = document.querySelector(".result");
-  arr.push(inp.value);
-
-  firstDiv.innerHTML = arr;
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!newArr.includes(arr[i])) newArr.push(arr[i]);
+class MathСalculation {
+  constructor(n) {
+    this.n = n;
   }
+  count() {
+    const arr = []
+    for (let i = 0; i < this.n; i++) {
+      arr.push(Math.floor(Math.random() * 10));
+    }
+    const newArr = arr.filter((el) => el % 2 === 0);
+    return `${newArr}, колличество четных елементов = ${newArr.length}`
+  }
+}
 
-  res.innerHTML = newArr;
-  inp.value = "";
-});
+const mathСalculation = new MathСalculation(10);
+const result = mathСalculation.count();
+console.log(result);
