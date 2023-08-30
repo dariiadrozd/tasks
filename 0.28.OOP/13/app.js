@@ -1,34 +1,71 @@
-// Реализуйте класс Anagram (Анаграмма это слово или фраза , 
-//   полученный путем замены букв исходного слова или фразы). 
-// Создать функцию для вывода ряда true, если слова являются анаграммами. 
-// Добавить проверки на ввод
+// Реализуйте класс ServerPost. Обязательными функциями считаются функции middleware, controller, service, repository. 
+// Цепочка взаимодействия между методами следующая:
+// middleware -> controller -> service -> repository, где:
+// middleware – функция валидатор
+// controller – функция, принимающая данные. Принимает json
+// service – функция проверки на то что с repository вернулось значение
+// repository – функция, симулирующая БД. Хранит массив данных. Взаимодействие с этим массивом осуществляется только в repository. 
+// Массив находится в приложении Задание:
+// на вход подается JSON вида:
+// `{
+// "label": "JavaScript", "category": "programmingLanguages", "priority": 1
+// }`
+// Неоходимо добавить в массив БД объект только в том случае, если нет совпадений по label. 
+// Если совпадения нет, то в объект клиента добавить ключ id со значением label в toLowerCase таким образом, чтобы в БД был запушен объект вида
+// {"id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1} Если совпадение есть – ошибка. Добавить проверки
 
-class Anagram {
-  isValid(str1, str2) {
-    if (typeof str1 !== 'string' || typeof str2 !== 'string') {
-      throw new Error('Вы передали не строку');
+class ServerPost {
+  middLeware(obj) {
+    try {
+      const midd = this.controller(obj);
+      return midd;
+    } catch (error) {
+      return error.message;
     }
   }
 
-  reverseAnagram(str1, str2) {
-    try {
-      this.isValid(str1, str2);
+  controller(obj) {
+    const contr = this.service(obj);
+    return contr;
+  }
 
-      const reversedStr1 = str1.toLowerCase().split('').sort().join('');
-      const reversedStr2 = str2.toLowerCase().split('').sort().join('');
-
-      return reversedStr1 === reversedStr2;
-    } catch (error) {
-      return false;
+  service(obj) {
+    const serv = this.repository(obj);
+    if (serv.length === 0) {
+      throw new Error('Совпадений не найдено');
     }
+    return serv;
+  }
+
+  repository(obj) {
+    const arr = [
+      { "id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1 },
+      { "id": "typescript", "label": "TypeScript", "category": "programmingLanguages", "priority": 1 },
+      { "id": "sql", "label": "SQL", "category": "programmingLanguages", "priority": 2 },
+      { "id": "java", "label": "Java", "category": "programmingLanguages", "priority": 3 },
+      { "id": "go", "label": "GO", "category": "programmingLanguages", "priority": 3 }
+    ];
+
+    const result = [];
+    arr.forEach(function (el) {
+      if (el.label === obj.label) {
+        result.push(el);
+      }
+    });
+
+    return result;
   }
 }
 
-const value1 = "обезьянство";
-const value2 = "светобоязнь";
+const serverPost = new ServerPost();
+const obj = {
+  label: "JavaScript",
+  category: "programmingLanguages",
+  priority: 1
+}
 
-const anagram = new Anagram();
-const isReverseAnagram = anagram.reverseAnagram(value1, value2);
-console.log(isReverseAnagram);
+console.log(serverPost.middLeware(obj));
+
+
 
 
