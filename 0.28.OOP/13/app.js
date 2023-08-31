@@ -15,56 +15,42 @@
 // {"id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1} Если совпадение есть – ошибка. Добавить проверки
 
 class ServerPost {
-  middLeware(obj) {
+  controller(obj) {
     try {
-      const midd = this.controller(obj);
-      return midd;
+      const serv = this.service(obj);
+      return serv;
     } catch (error) {
       return error.message;
     }
-  }
 
-  controller(obj) {
-    const contr = this.service(obj);
-    return contr;
   }
 
   service(obj) {
-    const serv = this.repository(obj);
-    if (serv.length === 0) {
-      throw new Error('Совпадений не найдено');
-    }
-    return serv;
+    const rep = this.repository(obj);
+    return rep;
   }
 
   repository(obj) {
     const arr = [
-      { "id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1 },
-      { "id": "typescript", "label": "TypeScript", "category": "programmingLanguages", "priority": 1 },
-      { "id": "sql", "label": "SQL", "category": "programmingLanguages", "priority": 2 },
+      { "id": "javascript", "label": "JavaScript", "category": "programmingLanguages", "priority": 1 }, { "id": "typescript", "label": "TypeScript", "category": "programmingLanguages", "priority": 1 }, { "id": "sql", "label": "SQL", "category": "programmingLanguages", "priority": 2 },
       { "id": "java", "label": "Java", "category": "programmingLanguages", "priority": 3 },
       { "id": "go", "label": "GO", "category": "programmingLanguages", "priority": 3 }
-    ];
-
-    const result = [];
-    arr.forEach(function (el) {
-      if (el.label === obj.label) {
-        result.push(el);
-      }
-    });
-
-    return result;
+    ]
+    const new_arr = arr.filter((el) => el.label === obj.label);
+    if (new_arr.length) {
+      throw new Error('такое уже есть');
+    } else {
+      arr.push({ id: obj.label.toLowerCase, ...obj}) 
+      // ??
+    }
+    return arr;
   }
 }
 
 const serverPost = new ServerPost();
-const obj = {
-  label: "JavaScript",
-  category: "programmingLanguages",
-  priority: 1
-}
-
-console.log(serverPost.middLeware(obj));
+const obj = JSON.parse(`{ "label": "C#", "category": "programmingLanguages", "priority": 1}`)
+const result = serverPost.controller(obj);
+console.log(result);
 
 
 
