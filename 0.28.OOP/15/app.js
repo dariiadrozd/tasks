@@ -20,7 +20,7 @@ class ServerDelete {
     } catch (error) {
       return error.message
     }
-  }
+  };
 
   service(obj) {
     const ser = this.repository(obj);
