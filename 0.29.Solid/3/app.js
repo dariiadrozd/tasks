@@ -10,30 +10,35 @@
 // Задание:
 // Необходимо вывести в консоль весь массив
 
-class ServerGetAll{
-constructor(name){
-  this.name = name;
+class ServerGetAll {
+  constructor(data) {
+    this.data = data;
+  }
+
+  controller() {
+    try {
+      const con = this.service();
+      return con;
+    } catch (error) {
+      return error.message
+    }
+  }
+
+  service() {
+    const ser = this.repository();
+    return ser;
+  }
+
+  repository() {
+    return this.data;
+  }
 }
 
-  controller(){
-const result = this.service();
-return result;
-  }
+const obj = [{ "id": 1, "name": "Yesenia", "age": 22 },
+{ "id": 2, "name": "Hanna", "age": 22 },
+{ "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }];
 
-  service(){
-const result = this.repository();
-return resultgi;
-  }
 
-  repository(){
-return this.name
-  }
-}
-
-const serverGetAll = new ServerGetAll();
-const obj = JSON.parse = ([{ "id": 1, "name": "Yesenia", "age": 22 },
-  { "id": 2, "name": "Hanna", "age": 22 },
-  { "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }]);
-  const result = serverGetAll.controller();
-  console.log(result);
- 
+const serverGetAll = new ServerGetAll(obj);
+const result = serverGetAll.controller();
+console.log(result);
