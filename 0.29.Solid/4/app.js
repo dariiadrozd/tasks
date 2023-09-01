@@ -1,41 +1,62 @@
-// Реализуйте класс DomHtml, который будет взаимодействовать с DOM по клику на кнопку. 
-// Класс содержит 4 метода: doPlus, doMinus, doMultiply, doDivide
+// РеализуйтеклассServerGetById.Обязательнымифункциямисчитаютсяфункции 
+// middleware, controller, service, repository. 
+// Цепочка взаимодействия между методами следующая:
+// middleware -> controller -> service -> repository, где:
+// middleware – функция валидатор
+//  – функция, принимающая данные. Принимает json
+// service – функция проверки на то что с repository вернулось значение
+// repository – функция, симулирующая БД. Хранит массив данных. 
+// Взаимодействие с этим массивом осуществляется только в repository. 
+// Массив находится в приложении
+// Задание:
+// на вход подается JSON вида:
+// `{
+// "id": 1
+// }`
+// Необходимо вывести в консоль найденный элемент массива по id если таковой имеется.
+//  В противном случае бросить исключение. Добавить проверки
 
-class DomHtml {
-  constructor() {
-    this.doEvent();
+class ServerGetById{
+constructor(){
+  this.name = [
+    { "id": 1, "name": "Yesenia", "age": 22 },
+    { "id": 2, "name": "Hanna", "age": 22 },
+    { "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }
+    ]
+}
+
+middleware(obj){
+  try{
+    const obj = JSON.parse(`{"id": 1}`)
+    if(!obj || isNaN(obj.id)) throw new Error('error')
+  }catch(error){
+alert(error.message)
+}
+
+}
+
+  controller(){
+const con = this.middleware();
+const valid = this.service(con)
+return valid;
   }
 
-  doEvent() {
-    const btn = document.querySelector('button');
-    btn.addEventListener('click', () => {
-      const inp1 = document.querySelector('.inp1').value;
-      const inp2 = document.querySelector('.inp2').value;
-      this.doPlus(inp1, inp2);
-      this.doMinus(inp1, inp2);
-      this.doMultiply(inp1, inp2);
-      this.doDivide(inp1, inp2);
-    });
+  service(){
+const ser = this.repository(obj);
+if(ser){
+  return ser
+}else{
+  throw new Error('"id" not found')
+}
   }
 
-  doPlus(inp1, inp2) {
-    const plus = document.querySelector('.plus');
-    plus.innerHTML = +inp1 + +inp2;
-  }
-
-  doMinus(inp1, inp2) {
-    const minus = document.querySelector('.minus');
-    minus.innerHTML = +inp1 - +inp2;
-  }
-
-  doMultiply(inp1, inp2) {
-    const multiply = document.querySelector('.multiply');
-    multiply.innerHTML = +inp1 * +inp2;
-  }
-  doDivide(inp1, inp2) {
-    const divide = document.querySelector('.divide');
-    divide.innerHTML = +inp1 / +inp2
+  repository(){
+    const id = obj.id;
+    const result = this.data.find(item => item.id === id);
+    return result;
   }
 }
 
-const domHtml = new DomHtml();
+const serverGetById = new ServerGetById();
+const result = controller.ServerGetById();
+console.log(result);
