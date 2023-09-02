@@ -9,36 +9,24 @@
 // Массив находится в приложении
 // Задание:
 // Необходимо вывести в консоль весь массив
-
 class ServerGetAll {
-  constructor(data) {
-    this.data = data;
-  }
 
   controller() {
-    try {
-      const con = this.service();
-      return con;
-    } catch (error) {
-      return error.message
-    }
+    const con = this.service();
+    return con;
   }
-
   service() {
     const ser = this.repository();
     return ser;
   }
-
   repository() {
-    return this.data;
+    const arr = [{ "id": 1, "name": "Yesenia", "age": 22 },
+    { "id": 2, "name": "Hanna", "age": 22 },
+    { "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }];
+    return arr;
   }
 }
 
-const obj = [{ "id": 1, "name": "Yesenia", "age": 22 },
-{ "id": 2, "name": "Hanna", "age": 22 },
-{ "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }];
-
-
-const serverGetAll = new ServerGetAll(obj);
+const serverGetAll = new ServerGetAll();
 const result = serverGetAll.controller();
 console.log(result);
