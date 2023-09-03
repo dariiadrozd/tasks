@@ -1,41 +1,50 @@
-// Реализуйте класс DomHtml, который будет взаимодействовать с DOM по клику на кнопку. 
-// Класс содержит 4 метода: doPlus, doMinus, doMultiply, doDivide
+// Реализуйте класс Singer, который будет наследоваться от класса Worker. 
+// Класс Worker состоит из: свойства name, свойства surname, метода getFullName(), 
+// с помощью которого можно вывести одновременно имя и фамилию; 
+// Класс Singer состоит из свойств years, birth, style и метода getMoreInfo(),
+//  который выводит информацию о певце: name, surname, years, birth, style. 
+//  Необходимо вызвать методы getFullName , getMoreInfo через класс Singer
 
-class DomHtml {
-  constructor() {
-    this.doEvent();
+class Worker {
+  name;
+  surname;
+  getFullName() {
+    return `${this.name} ${this.surname}`
   }
 
-  doEvent() {
-    const btn = document.querySelector('button');
-    btn.addEventListener('click', () => {
-      const inp1 = document.querySelector('.inp1').value;
-      const inp2 = document.querySelector('.inp2').value;
-      this.doPlus(inp1, inp2);
-      this.doMinus(inp1, inp2);
-      this.doMultiply(inp1, inp2);
-      this.doDivide(inp1, inp2);
-    });
+  setName(name) {
+    this.name = name;
   }
-
-  doPlus(inp1, inp2) {
-    const plus = document.querySelector('.plus');
-    plus.innerHTML = +inp1 + +inp2;
-  }
-
-  doMinus(inp1, inp2) {
-    const minus = document.querySelector('.minus');
-    minus.innerHTML = +inp1 - +inp2;
-  }
-
-  doMultiply(inp1, inp2) {
-    const multiply = document.querySelector('.multiply');
-    multiply.innerHTML = +inp1 * +inp2;
-  }
-  doDivide(inp1, inp2) {
-    const divide = document.querySelector('.divide');
-    divide.innerHTML = +inp1 / +inp2
+  setSurname(surname) {
+    this.surname = surname;
   }
 }
 
-const domHtml = new DomHtml();
+class Singer extends Worker {
+  years;
+  birth;
+  style;
+  getMoreInfo() {
+    return `${this.years} ${this, this.birth} ${this.style}`
+  }
+  setYears(years) {
+    this.years = years;
+  }
+
+  setBirth(birth) {
+    this.birth = birth;
+  }
+
+  setStyle(style) {
+    this.style = style;
+  }
+}
+
+const singer = new Singer();
+singer.setName('Darya');
+singer.setSurname('Drozd');
+singer.setYears(18);
+singer.setBirth('02.10.2004');
+singer.setStyle('classic');
+console.log(singer.getFullName());
+console.log(singer.getMoreInfo());
