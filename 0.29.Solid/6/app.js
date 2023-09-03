@@ -1,41 +1,48 @@
-// Реализуйте класс DomHtml, который будет взаимодействовать с DOM по клику на кнопку. 
-// Класс содержит 4 метода: doPlus, doMinus, doMultiply, doDivide
+// Реализуйте класс ServerPut. Обязательными функциями считаются функции middleware, controller, service, repository. 
+// Цепочка взаимодействия между методами следующая:
+// middleware -> controller -> service -> repository, где:
+// middleware – функция валидатор
+// controller – функция, принимающая данные. Принимает json
+// service – функция проверки на то что с repository вернулось значение
+// repository – функция, симулирующая БД. Хранит массив данных. 
+// Взаимодействие с этим массивом осуществляется только в repository. Массив находится в приложении Задание:
+// на вход подается JSON вида:
+// `{
+// "id": 1, "name": "Test", "age": 1
+// }`
+// Необходимо найти id клиента в массиве БД. Если совпадение есть, произвести 
+// обновление значений для соответствующих ключей.
+// Если совпадения по id нет – ошибка. Добавить проверки
 
-class DomHtml {
-  constructor() {
-    this.doEvent();
+class ServerPut {
+
+  controller(obj) {
+    try {
+      const con = this.service(obj);
+      return con
+    } catch (error) {
+      return error.message;
+    }
   }
 
-  doEvent() {
-    const btn = document.querySelector('button');
-    btn.addEventListener('click', () => {
-      const inp1 = document.querySelector('.inp1').value;
-      const inp2 = document.querySelector('.inp2').value;
-      this.doPlus(inp1, inp2);
-      this.doMinus(inp1, inp2);
-      this.doMultiply(inp1, inp2);
-      this.doDivide(inp1, inp2);
-    });
+  service(obj) {
+    const ser = this.repository(obj);
+    return ser
   }
 
-  doPlus(inp1, inp2) {
-    const plus = document.querySelector('.plus');
-    plus.innerHTML = +inp1 + +inp2;
-  }
-
-  doMinus(inp1, inp2) {
-    const minus = document.querySelector('.minus');
-    minus.innerHTML = +inp1 - +inp2;
-  }
-
-  doMultiply(inp1, inp2) {
-    const multiply = document.querySelector('.multiply');
-    multiply.innerHTML = +inp1 * +inp2;
-  }
-  doDivide(inp1, inp2) {
-    const divide = document.querySelector('.divide');
-    divide.innerHTML = +inp1 / +inp2
+  repository(obj) {
+    const arr = [
+      { "id": 1, "name": "Yesenia", "age": 22 },
+      { "id": 2, "name": "Hanna", "age": 22 },
+      { "id": 3, "name": "Stanislau", "age": 25 }, { "id": 4, "name": "German", "age": 18 }, { "id": 5, "name": "Maria", "age": 27 }
+    ]
+    const index = arr.findIndex((el) => el.id === obj.id);
+    if (index === -1) throw new Error("not found")
+    return arr[index]
   }
 }
 
-const domHtml = new DomHtml();
+const serverPut = new ServerPut();
+const obj = JSON.parse(`{"id": 1, "name": "Test", "age": 1}`)
+const result = serverPut.controller(obj);
+console.log(result);
