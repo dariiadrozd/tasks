@@ -1,24 +1,21 @@
 // РеализуйтеклассDomHtml,которыйбудетвзаимодействоватьсDOMпокликуна кнопку. 
-// Класс содержит 1 метод валидации, называемый middleware, в котором происходит проверка на uuid, введенный в input. 
-// Вывести true, если провека успешна.
+// Класс содержит 1 метод валидации, называемый middleware, в котором происходит проверка на uuid, 
+// введенный в input. Вывести true, если провека успешна.
 
 class DomHtml {
-  constructor() {
-    this.middleware();
-  }
 
   middleware() {
     const btn = document.querySelector('button');
-    btn.addEventListener('click', () => {
-      try {
-        const inp = document.querySelector('input').value;
-        if (!/^[0-9a-z]{8}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{4}\-[0-9a-z]{12}$/gm.test(inp)) throw new Error('error');
-        alert(true)
-      } catch (error) {
-        alert(error.message)
-      }
+    const div = document.querySelector('div')
+    btn.addEventListener('click', function () {
+      const inp = document.querySelector('input').value;
+      const uuid = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
+      const errorUuid = uuid.test(inp);
+      div.textContent = `${errorUuid ? 'true' : 'false'}`
     })
   }
 }
 
-const domHtml = new DomHtml()
+const domHtml = new DomHtml();
+domHtml.middleware();
+
