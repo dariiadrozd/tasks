@@ -1,60 +1,34 @@
-// Классы Employee и ProductionWorker.
-// Напишите класс Employee (Сотрудник), который содержит:
-// • имя сотрудника;
-// • номер сотрудника.
-// Затем напишите класс ProductionWorker (Рабочий), который является подклассом класса Employee.
-// Класс ProductionWorker содержит:
-// • номер смены (целое число, к примеру, 1, 2 или 3);
-// • ставка почасовой оплаты труда.
-// Напишите методы получатели и методы-модификаторы для каждого класса. 
-// После того как эти классы будут написаны, напишите программу, которая создает объект класса ProductionWorker и предлагает пользователю ввести данные по каждому атрибуту данных этого объекта. 
-// Сохраните данные в объекте и примените в этом объекте методы получатели, чтобы получить эти данные и вывести их на экран.
+// Реализуйте Validation – производный класс, базовый – StringValue.
+// Класс StringValue состоит из: свойствa value в конструкторе;
+// Класс Validation наследует value в конструкторе при помощи метода super 
+// и дополнительно принимает и дополняет конструктор свойством: confirmValue; 
+// класс Validation включает метод checkValue(), который проверяет, что 
+// передаваемое значение value в конструктор – строка и состоит из букв. 
+// Также добавить проверку на равенство value и confirmValue
+// Необходимо вызвать метод checkValue экземпляра validation
+ 
 
-class Employee {
-  nameOfEmployee;
-  numOfEmployee;
-  getNameOfEmployee() {
-    return this.nameOfEmployee;
-  }
-  getNumEmployee() {
-    return this.numOfEmployee
-  }
-
-  setNameOfEmployee() {
-    this.nameOfEmployee = this.nameOfEmployee
-  }
-
-  setNumEmployee(numOfEmployee) {
-    this.numOfEmployee = numOfEmployee
+class StringValue{
+  constructor(value){
+    this.value = value;
   }
 }
 
-class ProductionWorker extends Employee {
-numOfChange;
-rateOfChange;
-getNumOfChange(){
-  return this.numOfChange
+class Validation extends StringValue{
+constructor(value,confirmValue){
+super(value);
+this.confirmValue = confirmValue;
 }
-
-getRateOfChange(){
-return this.rateOfChange
-}
-
-setNumOfChange(numOfChange){
-this.numOfChange = numOfChange
-}
-
-setRateOfChange(rateOfChange){
-this.rateOfChange = rateOfChange
+checkValue(){
+  try{
+if(!isNaN(this.value)) throw new Error('not a string')
+if(this.value !== this.confirmValue) throw new Error('строки не равны');
+console.log(true);
+  }catch(er){
+    console.log(er.message);
+  }
 }
 }
 
-const productionWorker = new ProductionWorker();
-productionWorker.setNameOfEmployee('Darya');
-productionWorker.setNumEmployee(1);
-productionWorker.setNumOfChange(2);
-productionWorker.setRateOfChange(100);
-console.log(productionWorker.getNameOfEmployee());
-console.log(productionWorker.getNumEmployee());
-console.log(productionWorker.getNumOfChange());
-console.log(productionWorker.getRateOfChange());
+const validation = new Validation('te','test');
+validation.checkValue();
