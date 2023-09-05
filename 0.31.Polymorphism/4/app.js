@@ -1,60 +1,38 @@
-// Классы Employee и ProductionWorker.
-// Напишите класс Employee (Сотрудник), который содержит:
-// • имя сотрудника;
-// • номер сотрудника.
-// Затем напишите класс ProductionWorker (Рабочий), который является подклассом класса Employee.
-// Класс ProductionWorker содержит:
-// • номер смены (целое число, к примеру, 1, 2 или 3);
-// • ставка почасовой оплаты труда.
-// Напишите методы получатели и методы-модификаторы для каждого класса. 
-// После того как эти классы будут написаны, напишите программу, которая создает объект класса ProductionWorker и предлагает пользователю ввести данные по каждому атрибуту данных этого объекта. 
-// Сохраните данные в объекте и примените в этом объекте методы получатели, чтобы получить эти данные и вывести их на экран.
+// РеализуйтеклассPwd.PwdхранитфункциюshowPwd,котораяформируети возвращает 
+// рандомно сгенерированный пароль из 8 чисел. Класс Validation является 
+// производным по отношению к базовому, родительскому Pwd и содержит функцию 
+// showPwd. Необходимо переопределить showPwd из базового класса и записать в 
+// переменную используя метод super. Далее дополняем переопределенный метод 
+// отображением результата в console.
 
-class Employee {
-  nameOfEmployee;
-  numOfEmployee;
-  getNameOfEmployee() {
-    return this.nameOfEmployee;
-  }
-  getNumEmployee() {
-    return this.numOfEmployee
+class Pwd{
+
+  showPwd(){
+    let str = '';
+    for(let i=0; i<8;i++){
+      str += Math.floor(Math.random()*10)
+    }
+    return str;
   }
 
-  setNameOfEmployee() {
-    this.nameOfEmployee = this.nameOfEmployee
+}
+
+class Validation extends Pwd{
+  isValid(){
+if(pass.length<8) throw new Error('error')
+  }
+  
+showPwd(){
+  try{
+    const pass = super.showPwd();
+    this.isValid(pass)
+    console.log(pass);
+  }catch(er){
+    console.log(er.message); 
   }
 
-  setNumEmployee(numOfEmployee) {
-    this.numOfEmployee = numOfEmployee
-  }
-}
-
-class ProductionWorker extends Employee {
-numOfChange;
-rateOfChange;
-getNumOfChange(){
-  return this.numOfChange
-}
-
-getRateOfChange(){
-return this.rateOfChange
-}
-
-setNumOfChange(numOfChange){
-this.numOfChange = numOfChange
-}
-
-setRateOfChange(rateOfChange){
-this.rateOfChange = rateOfChange
 }
 }
 
-const productionWorker = new ProductionWorker();
-productionWorker.setNameOfEmployee('Darya');
-productionWorker.setNumEmployee(1);
-productionWorker.setNumOfChange(2);
-productionWorker.setRateOfChange(100);
-console.log(productionWorker.getNameOfEmployee());
-console.log(productionWorker.getNumEmployee());
-console.log(productionWorker.getNumOfChange());
-console.log(productionWorker.getRateOfChange());
+const validation = new Validation();
+validation.showPwd();
