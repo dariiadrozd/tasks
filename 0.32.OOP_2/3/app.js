@@ -2,22 +2,22 @@
 // Добавить проверки
 
 const obj = {
-  name: 'Darya',
-  surname: 'Drozd',
-  age: 18
-}
-
-function doPar(obj) {
-  let count = 0;
-  for (let key in obj) {
-    count++;
+    name: 'Darya',
+    surname: 'Drozd',
+    age: 18
   }
-  return count;
-}
-
-const result = doPar(obj);
-console.log(result);
-
-const value = Object.values(obj);
-console.log(value);
-console.log(value.length);
+  
+  function doPar(obj) {
+    let count = 0;
+    for (let key in obj) {
+      count++;
+    }
+    return count;
+  }
+  
+  const result = doPar(obj);
+  console.log(result);
+  
+  const value = Object.values(obj);
+  console.log(value);
+  console.log(value.length);
