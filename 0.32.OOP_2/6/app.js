@@ -33,7 +33,7 @@ class ProductionWorker extends Employee {
 numOfChange;
 rateOfChange;
 getNumOfChange(){
-  return this.numOfChange
+  return this.hbaseif 
 }
 
 getRateOfChange(){
