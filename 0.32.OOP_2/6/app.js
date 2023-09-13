@@ -14,4 +14,4 @@ const obj = {
 
 
 const b = obj.key.bind(new_Obj)
-b()
+b();
