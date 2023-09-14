@@ -1,17 +1,7 @@
+const arr = [1, 2, 3, 4, 5,];
 
-const new_Obj = {
-  name: 'test'
-}
+const num = arr.reduce(function (el, number) {
+  return el * number;
+},1);
 
-
-
-const obj = {
-  id: 1,
-  key: function (a,b) {
-    console.log(this.name);//test
-  }
-}
-
-
-const b = obj.key.bind(new_Obj)
-b();
+console.log((num));
