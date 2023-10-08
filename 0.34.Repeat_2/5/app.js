@@ -1,2 +1,10 @@
-// 5. Реализуйте класс Client, содержащий метод doRegistration. Ваша задача получить данные из 2 инпутов: почта, пароль. По клику на кнопку «отправить запрос на сервер» для последующей записи в массив репозитория класса Server
+// У вас есть 3 инпута. Необходимо вывести в результат конкатенацию всех инпутов
 
+document.querySelector('button').addEventListener('click', ()=>{
+    const inp1 = document.querySelector('.inp1');
+    const inp2 = document.querySelector('.inp2');
+    const inp3 = document.querySelector('.inp3');
+    const div = document.querySelector('div');
+
+    div.innerHTML = inp1.value + inp2.value + inp3.value
+})
