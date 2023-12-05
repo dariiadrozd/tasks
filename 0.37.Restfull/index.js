@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
+app.get("./", (req, res) => {
     try {
         const data = getAllEnvironment();
         res.send(data);
