@@ -59,7 +59,7 @@ class Calculator {
 
 const calculator = new Calculator;
 
-calculator.a = 133;
+calculator.a = 16758493023;
 calculator.b = 89;
 
 console.log(calculator.add());
