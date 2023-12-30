@@ -131,7 +131,7 @@
 
 // describe('Unique Function', () => {
 //     const arr = ['+48884062873', '+375293638123', '+375293638123']
-    
+
 
 //     test('test toHaveLength', () => {
 //         const res = idUniqArr(arr)
@@ -147,4 +147,22 @@
 
 // На входе статичный объект. Необходимо посчитать количество пар 
 // (ключ: значение) где значение число и вывести количество. 
-// Добавить необходимые проверки.
+// Добавить необходимые проверки. Написать тест для функции
+
+
+function countNumbers(obj) {
+    if (typeof obj !== 'object' || Array.isArray(obj)) {
+        throw new Error("Input should be an object");
+    }
+
+    let count = 0;
+    const keys = Object.keys(obj);
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        if (typeof obj[key] === 'number') {
+            count += 1;
+        }
+    }
+
+    return count;
+}
