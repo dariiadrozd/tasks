@@ -81,5 +81,6 @@ class StringArray {
 
 }
 
+//СоздайтеклассStringArray,которыйимеетсвойствоarray(массивстрок)иметоды: getLongestWord(): string - возвращает самое длинное слово из массива. getUniqueWords(): string[] - возвращает массив уникальных слов из массива.
 
 export { calculateFactorial, isPalindrome, capitalizeString, StringArray }
